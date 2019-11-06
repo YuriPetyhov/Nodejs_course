@@ -1,0 +1,19 @@
+{
+  "name": "nodejs_course",
+  "version": "1.0.0",
+  "description": "Node Js Course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YuriPetyhov/Nodejs_course.git"
+  },
+  "author": "Petukhou Yury",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YuriPetyhov/Nodejs_course/issues"
+  },
+  "homepage": "https://github.com/YuriPetyhov/Nodejs_course#readme"
+}
