@@ -1,18 +1,23 @@
 const serverPort = 8800
 const path = require('path')
 const express = require('express')
-const admin = require("./admin")
+
+const shop = require("./routers/shop")
+
 const rootDir = require('./util/path')
 const app = express()
-
 const bodyParser = require('body-parser')
 
-app.use(bodyParser.urlencoded({extended: false}))
+app.set('view engine', 'pug');
+app.set('views', 'views')
 
-app.use('/', admin )
-app.use((req, res, next) => {
-  res.status(404).sendfile(path.join(rootDir, 'view', '404.html' ))
-})
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(express.static(path.join(rootDir, 'public')))
+
+app.use('/', shop )
+
+
+
 app.listen(serverPort, (err) => {
     if(err) {
         console.log('server drop')
