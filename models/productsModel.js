@@ -1,22 +1,23 @@
-const getDb = require('../mongoDbConnect').getDb
+const mongoose = require('mongoose');
+const Scheme = mongoose.Schema
 
-
-module.exports = class Products {
-  constructor(n) {
-    this.name = n
+const productScheme = new Scheme({
+  title: {
+    type: String,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  imageUrl: {
+    type: String,
+    required: true
   }
+})
 
-  save() {
-    const db = getDb()
-    return db.collection('products')
-      .insertOne(this)
-      .then(r => console.log(`PRODUCT WAS EDDDED ${this.name}`))
-  }
-
-  static fetchAll() {
-   const db = getDb()
-    return db.collection('products')
-      .find()
-      .toArray()
-  }
-}
+module.exports = mongoose.model('Product', productScheme)

@@ -15,6 +15,11 @@
                      li.main-header__item
                          a(href="/addCart") Add Product
          main
-            ul
+
                 each item in prods
-                    li=item.name
+                    div
+                        div=item.title
+                        img(src=item.imageUrl)
+                        div=item.description
+                        div=item.price
+

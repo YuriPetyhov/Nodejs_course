@@ -1,9 +1,9 @@
 const rootPath = require('../util/path')
 const path = require('path')
-const Products = require('../models/productsModel')
+const Product = require('../models/productsModel')
 
 exports.main =  (req, res) => {
-  Products.fetchAll().then(d =>  res.render('shop', {prods:d}))
+  Product.find().then(d =>  res.render('shop', {prods:d}))
 }
 
 exports.addCart =  (req, res) => {
@@ -11,7 +11,15 @@ exports.addCart =  (req, res) => {
 }
 
 exports.saveCart = (req, res) => {
-   const products = new Products(req.body.name)
-  products.save()
+  const {title, price, description, imageUrl} = req.body
+  const product = new Product({
+    title: title,
+    price: price,
+    description: description,
+    imageUrl: imageUrl
+  });
+  product
+    .save()
+    .then(res => console.log('PRODUCT WAS ADDED'))
   res.redirect('/')
 }
