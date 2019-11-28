@@ -11,12 +11,14 @@ exports.addCart =  (req, res) => {
 }
 
 exports.saveCart = (req, res) => {
+  console.log(req.user)
   const {title, price, description, imageUrl} = req.body
   const product = new Product({
     title: title,
     price: price,
     description: description,
-    imageUrl: imageUrl
+    imageUrl: imageUrl,
+    userId: req.user
   });
   product
     .save()

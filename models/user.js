@@ -1,15 +1,29 @@
-const getDb = require('../mongoDbConnect').getDb
-class User {
-  constructor(username, email) {
-    this.username = username;
-    this.email = email;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema;
 
-  }
-
-  save() {
-    const db = getDb()
-    db.collection('users')
-      .insertOne(this)
-
-  }
-}
+const userSchema = new Schema({
+  _id: Schema.Types.ObjectID,
+  email: {
+    type: String,
+    required: true
+  },
+  name: {
+    type: String,
+    required: true
+  },
+   cart: {
+    items: [
+      {
+        productId: {
+          type: Schema.Types.ObjectID,
+          required: true,
+          ref: "Product"
+        },
+        quality: {
+          type: Number
+        }
+      }
+    ]
+   }
+})
+module.exports = mongoose.model('User', userSchema)
